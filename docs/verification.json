@@ -1,0 +1,52 @@
+{
+  "originalVideoSha256": "cbf5331b3cc4dc1ad43957e9048685b62979e9b5300244738d67684d79da9924",
+  "browser": {
+    "mutedStateVerified": true,
+    "invalidStakeRejected": true,
+    "rulesPause": true,
+    "viewports": [
+      "1280x720",
+      "390x844",
+      "375x667",
+      "844x390"
+    ],
+    "desktopStakePounds": 10,
+    "pauseClockHeld": true,
+    "naturalRounds": 2,
+    "audibleAudioReviewed": false,
+    "physicalDevicesTested": false,
+    "consoleErrors": 0,
+    "engine": "Codex in-app browser",
+    "mobileStakePounds": 5,
+    "finalDemoBalancePounds": 1000
+  },
+  "remainingLimits": [
+    "Deterministic supplied demo; no randomized outcomes or RTP implementation",
+    "Initial play waits for complete original 45.6MB video download",
+    "Original desktop composition retains a small vertical scrollbar; main controls visible",
+    "Starting-phase interruption race and actual network-error recovery not exercised"
+  ],
+  "sourceArchiveSha256": "5C9B27AE73ED51A06CB1A3B48033918A4E82472F087700795D15DE58469558A3",
+  "httpChunkBlobCheck": {
+    "type": "video/mp4",
+    "passed": true,
+    "originalSha256Matches": true,
+    "bytes": 45642600
+  },
+  "unitTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "productionBuild": "passed",
+  "evidence": [
+    "docs/evidence/desktop-ready.jpg",
+    "docs/evidence/desktop-result.jpg",
+    "docs/evidence/landscape-ready.jpg",
+    "docs/evidence/mobile-active.jpg",
+    "docs/evidence/mobile-paused.jpg",
+    "docs/evidence/mobile-ready.jpg",
+    "docs/evidence/mobile-result.jpg",
+    "docs/evidence/small-phone-ready.jpg"
+  ],
+  "maximumDeployedFileBytes": 4194304
+}
