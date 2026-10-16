@@ -1,0 +1,38 @@
+{
+  "artDirectionVersion": "1.0.0",
+  "assets": [
+    {
+      "file": "call-of-booty-logo.png",
+      "status": "final generated logo, integration review pending",
+      "width": 1942,
+      "height": 809,
+      "format": "PNG",
+      "colorMode": "RGBA",
+      "bytes": 2193600,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "runtimeUse": "compact game title branding with integrated anonymous operator",
+      "source": [
+        "../exfil-opening.webp, inspected visual reference",
+        "../call-of-booty-extraction.webp, inspected visual reference",
+        "built-in image generation from the inspected reference brief"
+      ],
+      "provenance": "Reference art supplied in the user's Call of Booty source archive; new title treatment and anonymous masked operator generated for this project.",
+      "notes": "Original stills show first-person arms only. The full operator silhouette is inferred. No identifiable face, franchise badge or additional tile asset."
+    },
+    {
+      "file": "paid-to-raid-logo.png",
+      "status": "Integrated current title logo",
+      "width": 1774,
+      "height": 887,
+      "format": "PNG",
+      "colorMode": "RGBA",
+      "bytes": 2439831,
+      "runtimeUse": "Game title branding",
+      "provenance": "User-selected Paid to Raid Tactical Logo.png supplied via Library.",
+      "notes": "Replaces the visible prior title; prior logo preserved as an unused legacy asset."
+    }
+  ]
+}
