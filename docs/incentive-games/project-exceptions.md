@@ -1,4 +1,4 @@
-# Call of Booty: Incentive Games exceptions and limitations
+# Cashfire: Incentive Games exceptions and limitations
 
 ## Applicable standard and precedence
 
@@ -8,7 +8,7 @@ The four supplied control-bar Markdown references and `Header.png` are preserved
 
 ## Explicitly authorized exception
 
-On 15 October 2026, the user requested: "in play remove the controls". For Call of Booty this means unmounting betting/stake/PLAY controls during `starting`, `playing` and `paused`, restoring them after settlement or abort. Necessary pause/resume and mute access remain discreetly available. The kill meter moves into the game region as a HUD. This exception is local to Call of Booty and does not alter the company standard or other projects.
+On 15 October 2026, the user requested: "in play remove the controls". For Cashfire this means unmounting betting/stake/PLAY controls during `starting`, `playing` and `paused`, restoring them after settlement or abort. Necessary pause/resume and mute access remain discreetly available. The kill meter moves into the game region as a HUD. This exception is local to Cashfire and does not alter the company standard or other projects.
 
 ## Unavailable standard resources
 
@@ -38,3 +38,7 @@ Remaining review limits:
 - The existing optional cinematic view hides balance during live playback. The normal shell preserves money context, and settlement restores it. Do not describe that optional full-viewport mode as a faithful approved shell variant without a corresponding reference.
 
 Record actual final browser evidence in the main task's quality report; do not convert this source review into invented passing checks.
+
+## Cashfire update,17October2026
+
+The right-hand full paytable supersedes the earlier lower-left HUD description. Five equal-probability demo outcomes now exist, including two early deaths,5× and1,000× survivals. Current/next conditional money and actual settlement are separate; no97%RTP implementation is claimed. The live-phase hidden-controller exception is preserved. Desktop/phone/short-container review is pending because browser launch/IPC is denied in this environment. Local `.openai` metadata is unchanged and excluded from publication archives. See `../cashfire-update.md` for current facts.

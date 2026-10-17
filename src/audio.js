@@ -25,6 +25,28 @@ export class InterfaceAudio {
     osc.stop(now + duration + .01);
   }
   click() { this.tone(520, .07, 0, 'sine', .04); }
+  shot() {
+    if (!this.context || this.muted || this.context.state !== 'running') return;
+    const now = this.context.currentTime;
+    const buffer = this.context.createBuffer(1, Math.round(this.context.sampleRate * .095), this.context.sampleRate);
+    const samples = buffer.getChannelData(0);
+    let seed = 9173;
+    for (let i = 0; i < samples.length; i++) {
+      seed = (Math.imul(seed, 1664525) + 1013904223) | 0;
+      samples[i] = seed / 2147483648;
+    }
+    const source = this.context.createBufferSource();
+    const filter = this.context.createBiquadFilter();
+    const gain = this.context.createGain();
+    source.buffer = buffer;
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(2600, now);
+    gain.gain.setValueAtTime(.12 * this.volume, now);
+    gain.gain.exponentialRampToValueAtTime(.0001, now + .09);
+    source.connect(filter).connect(gain).connect(this.context.destination);
+    source.start(now);
+    source.stop(now + .095);
+  }
   kill() {
     this.tone(740, .14, 0, 'triangle', .08);
     this.tone(1108, .2, .08, 'sine', .06);

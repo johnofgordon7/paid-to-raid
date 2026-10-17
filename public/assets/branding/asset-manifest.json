@@ -1,38 +1,36 @@
 {
-  "artDirectionVersion": "1.0.0",
+  "artDirectionVersion": "1.1.0",
   "assets": [
     {
-      "file": "call-of-booty-logo.png",
-      "status": "final generated logo, integration review pending",
-      "width": 1942,
-      "height": 809,
+      "file": "cashfire-logo.png",
+      "status": "final generated Cashfire logo",
+      "width": 1983,
+      "height": 793,
       "format": "PNG",
       "colorMode": "RGBA",
-      "bytes": 2193600,
+      "bytes": 1908730,
       "pivot": [
         0.5,
         0.5
       ],
-      "runtimeUse": "compact game title branding with integrated anonymous operator",
+      "runtimeUse": "standalone shooter title in the game region",
       "source": [
-        "../exfil-opening.webp, inspected visual reference",
-        "../call-of-booty-extraction.webp, inspected visual reference",
-        "built-in image generation from the inspected reference brief"
+        "built-in image generation, logo-brand workflow"
       ],
-      "provenance": "Reference art supplied in the user's Call of Booty source archive; new title treatment and anonymous masked operator generated for this project.",
-      "notes": "Original stills show first-person arms only. The full operator silhouette is inferred. No identifiable face, franchise badge or additional tile asset."
+      "provenance": "Original Cashfire wordmark generated for the requested rebrand: ivory steel CASH, fire-orange FIRE and a compact muzzle-flash motif on transparent background.",
+      "notes": "No character or additional tile asset. Existing gameplay stills, video and sound are unchanged."
     },
     {
-      "file": "paid-to-raid-logo.png",
-      "status": "Integrated current title logo",
-      "width": 1774,
-      "height": 887,
+      "file": "cashfire-enemy.png",
+      "status": "generated tactical enemy cutout",
+      "width": 1024,
+      "height": 1536,
       "format": "PNG",
       "colorMode": "RGBA",
-      "bytes": 2439831,
-      "runtimeUse": "Game title branding",
-      "provenance": "User-selected Paid to Raid Tactical Logo.png supplied via Library.",
-      "notes": "Replaces the visible prior title; prior logo preserved as an unused legacy asset."
+      "bytes": 2004582,
+      "runtimeUse": "four procedural combat simulations",
+      "source": "Built-in image generation",
+      "provenance": "Anonymous full-body olive tactical combatant with helmet, face covering and unbranded rifle on transparent background. No logo/flag/insignia."
     }
   ]
 }

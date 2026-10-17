@@ -1,0 +1,54 @@
+/* Procedural combat poses follow the accepted round clock. No CSS animation clocks. */
+.combat-simulation { position: absolute; z-index: 1; inset: 0; overflow: hidden; pointer-events: none; background: #182019; isolation: isolate; }
+.sim-camera { position: absolute; inset: -2%; transform-origin: 51% 59%; will-change: transform; }
+.sim-location { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; user-select: none; }
+.sim-warehouse { z-index: 1; }
+.sim-world-haze { position: absolute; z-index: 2; inset: 0; background: linear-gradient(90deg, #0c160c66, transparent 32%, #12201433 70%), radial-gradient(ellipse at 46% 49%, #b2c7a344, transparent 44%); mix-blend-mode: screen; }
+.sim-rain { position: absolute; z-index: 5; inset: -60%; background-image: repeating-linear-gradient(101deg, transparent 0 36px, #d2dfdf99 36.2px 36.9px, transparent 37.1px 97px); background-size: 130px 150px; mask-image: repeating-linear-gradient(180deg, #000 0 7%, transparent 7.3% 22%); transform: rotate(4deg); }
+.sim-action-space { position: absolute; z-index: 3; left: 0; top: 0; bottom: 0; right: var(--cashfire-reserved, 250px); min-width: 0; overflow: hidden; }
+.sim-enemy { position: absolute; height: auto; aspect-ratio: 180 / 340; transform-origin: 50% 96%; filter: brightness(var(--sim-enemy-tint, 1)) drop-shadow(2px 5px 3px #0008); will-change: transform; }
+.sim-enemy-vector, .sim-enemy-art { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; user-select: none; }
+.sim-enemy-art { opacity: 0; }
+.sim-enemy.has-cutout .sim-enemy-art { opacity: 1; }
+.sim-enemy.has-cutout .sim-enemy-vector { opacity: 0; }
+.sim-enemy.is-mirrored .sim-enemy-art, .sim-enemy.is-mirrored .sim-enemy-vector { transform: scaleX(-1); }
+.sim-enemy-ground { position: absolute; left: 16%; right: 8%; bottom: -1%; height: 5%; border-radius: 50%; background: #080e08aa; filter: blur(3px); transform: rotate(-8deg); }
+.sim-enemy-flash { position: absolute; z-index: 3; top: 29%; left: 83%; width: 29%; aspect-ratio: 1; background: #fff7d5; clip-path: polygon(50% 0,58% 35%,84% 13%,67% 42%,100% 51%,66% 59%,83% 85%,58% 67%,49% 100%,42% 64%,13% 87%,33% 57%,0 49%,36% 41%,17% 16%,44% 34%); filter: drop-shadow(0 0 8px #ff9e32); }
+.sim-enemy.has-cutout .sim-enemy-flash { top: 19%; left: 54%; }
+.sim-enemy.is-mirrored .sim-enemy-flash { left: -12%; }
+.sim-enemy.has-cutout.is-mirrored .sim-enemy-flash { left: 17%; }
+.sim-enemy-hit { position: absolute; z-index: 4; left: 34%; top: 24%; width: 25%; aspect-ratio: 1; background: radial-gradient(circle, #fff6cc 0 8%, #e7c282aa 14%, #b6aa7055 30%, transparent 65%); transform: scale(2.1); }
+.sim-tracers { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.sim-reticle { position: absolute; z-index: 4; width: 25px; height: 25px; color: #eeeada; filter: drop-shadow(0 1px 2px #000); }
+.sim-target-reticle { left: 51%; top: 36%; }
+.sim-reticle i { position: absolute; background: currentColor; opacity: .8; }
+.sim-reticle i:nth-child(1) { top: 0; left: 12px; width: 1px; height: 6px; }
+.sim-reticle i:nth-child(2) { bottom: 0; left: 12px; width: 1px; height: 6px; }
+.sim-reticle i:nth-child(3) { left: 0; top: 12px; height: 1px; width: 6px; }
+.sim-reticle i:nth-child(4) { right: 0; top: 12px; height: 1px; width: 6px; }
+.sim-reticle > span { position: absolute; top: 12px; left: 12px; width: 2px; height: 2px; background: currentColor; }
+.sim-reticle.is-hit { color: #ffd075; }
+.sim-reticle.is-hit::before, .sim-reticle.is-hit::after { content: ''; position: absolute; left: 12px; top: 3px; width: 1px; height: 20px; background: currentColor; transform: rotate(45deg); }
+.sim-reticle.is-hit::after { transform: rotate(-45deg); }
+.sim-gun-fire { position: absolute; z-index: 6; width: clamp(43px, 8%, 128px); aspect-ratio: 1; transform-origin: center; background: radial-gradient(circle, #fffef0 0 14%, #fff1b2 19%, #ffa63e88 35%, transparent 62%); filter: drop-shadow(0 0 15px #ffad4877); }
+.sim-gun-fire i { position: absolute; inset: 0; background: #ffedab; clip-path: polygon(51% 0,59% 35%,85% 13%,69% 43%,100% 51%,68% 61%,86% 86%,59% 69%,49% 100%,40% 66%,12% 88%,30% 58%,0 48%,34% 40%,15% 15%,42% 32%); }
+.sim-gun-fire > span { position: absolute; inset: 28%; background: #fffdf1; border-radius: 50%; box-shadow: 0 0 16px #ffe39d; }
+.sim-muzzle-light { position: absolute; z-index: 7; inset: 0; background: radial-gradient(ellipse at 59% 63%, #ffb15a, transparent 70%); mix-blend-mode: screen; }
+.sim-lens { position: absolute; z-index: 7; inset: 0; background: radial-gradient(ellipse at 43% 49%, transparent 29%, #06100922 68%, #060c086b 100%); box-shadow: inset 0 0 90px #0004; }
+.sim-damage { position: absolute; z-index: 8; inset: 0; background: radial-gradient(ellipse at 43% 48%, transparent 28%, #85180d55 65%, #a42214d9 100%); box-shadow: inset 35px -10px 105px #d32e1b44, inset -35px 0 100px #c8332433; mix-blend-mode: screen; }
+.sim-damage-ambush { background: linear-gradient(90deg, #bf3128ad, transparent 43%), radial-gradient(ellipse at 51% 45%, transparent 40%, #8d1c0dbb 100%); }
+.sim-damage-crossfire { background: linear-gradient(90deg, #9b221a99, transparent 20%, transparent 62%, #bb3527a6), radial-gradient(ellipse at 44% 42%, transparent 25%, #a3221ab3 100%); }
+.sim-impact-scar { position: absolute; z-index: 8; inset: 0; background: linear-gradient(112deg, transparent 40%, #c9bfb72b 40.1%, transparent 40.4%), linear-gradient(39deg, transparent 55%, #ddd1b21a 55.1%, transparent 55.5%), radial-gradient(ellipse at 19% 77%, #16040480, transparent 25%); }
+.sim-death-shade { position: absolute; z-index: 9; inset: 0; background: linear-gradient(0deg, #030605e6, #080a0966 53%, #0a08084d); }
+@container cashfire-stage (max-width: 700px) {
+  .sim-location { object-position: 70% center; }
+  .sim-camera { inset: -2%; }
+  .sim-action-space { left: 0; right: var(--cashfire-reserved, 150px); }
+  .sim-enemy { width: calc(36% * var(--sim-enemy-scale, 1)) !important; }
+  .sim-reticle { width: 21px; height: 21px; margin: -2px 0 0 -2px; }
+  .sim-lens { box-shadow: inset 0 0 40px #0005; }
+}
+@container cashfire-stage (max-height: 330px) {
+  .sim-enemy { width: calc(11% * var(--sim-enemy-scale, 1)) !important; }
+  .sim-reticle { scale: .8; }
+}

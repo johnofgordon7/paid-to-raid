@@ -35,14 +35,14 @@ export function IncentiveControls({ stake, ready, canPlay, onPlay, onStake, onSt
       {ready ? <Play size={43} fill="currentColor" /> : <LoaderCircle size={43} className="spin" />}
       <span>{ready ? 'PLAY' : 'LOADING'}</span>
     </Button>
-    <div className="ig-controller-note"><span>30 SECOND SURVIVAL</span><strong>{complete ? 'Stake returned. Ready for another round.' : 'Choose your stake. Survive to collect.'}</strong></div>
+    <div className="ig-controller-note"><span>30 SECOND SURVIVAL</span><strong>{complete ? 'Round complete. Ready for another.' : 'Five demo outcomes. Survive to collect.'}</strong></div>
   </section>;
 }
 
 export function IncentiveFooter({ stake, lastReturn, live }) {
   return <footer className="ig-footer">
     <span><small>BET</small> {formatMoney(stake)}</span>
-    <span className="ig-demo-note">PLAY MONEY · {live ? 'ROUND IN PROGRESS' : 'SCRIPTED DEMONSTRATION'}</span>
+    <span className="ig-demo-note">PLAY MONEY · {live ? 'ROUND IN PROGRESS' : '5-OUTCOME DEMO'}</span>
     <span><small>LAST RETURN</small> {lastReturn === null ? '—' : formatMoney(lastReturn)}</span>
   </footer>;
 }
