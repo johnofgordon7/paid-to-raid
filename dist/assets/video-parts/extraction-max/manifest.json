@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "logicalVideo": "./assets/call-of-booty-extraction-max.mp4",
+  "bytes": 43572023,
+  "sha256": "f8557534dd9e22b6e1654527e0ea9d6699f6c44db8a67a6f5d635db7f3a7403e",
+  "partSizeBytes": 4194304,
+  "parts": [
+    {
+      "file": "part-00.bin",
+      "bytes": 4194304,
+      "sha256": "fd970d1d80daee1c7248310ebc352f1a5f22120b2ac4bb0af71fe6fe0a29e7e8"
+    },
+    {
+      "file": "part-01.bin",
+      "bytes": 4194304,
+      "sha256": "6da97f646acd797c84fe08fe95b995910a51e795aa530999c1824b2a40e05337"
+    },
+    {
+      "file": "part-02.bin",
+      "bytes": 4194304,
+      "sha256": "e86b3726662f1b935f0768261e38669b2bc55ba9a2146b62ca09594a0e10205c"
+    },
+    {
+      "file": "part-03.bin",
+      "bytes": 4194304,
+      "sha256": "3112efbbabf6f016e542f304e6cbc4af62988be76e54c7bb6954aa1812a4e72c"
+    },
+    {
+      "file": "part-04.bin",
+      "bytes": 4194304,
+      "sha256": "34ec095354c2580fb1fbc81bd166660458ee7c1aec7e4d6551480dfa97cf0710"
+    },
+    {
+      "file": "part-05.bin",
+      "bytes": 4194304,
+      "sha256": "952f4110e8796b5ff2dc12f7f617a3c50ac322cc9c616852a6f508a732b82a99"
+    },
+    {
+      "file": "part-06.bin",
+      "bytes": 4194304,
+      "sha256": "8f65ff98d0dc02b49c24572d999622a570ee69b010a53e99b44c4dbceee1cd2c"
+    },
+    {
+      "file": "part-07.bin",
+      "bytes": 4194304,
+      "sha256": "2ee76a889c41ad651761d165c962c9ef07d5154da4e5388665e611ee658a9301"
+    },
+    {
+      "file": "part-08.bin",
+      "bytes": 4194304,
+      "sha256": "6494d422891533f14f5cbff3c0f5c8437843c10a12bb71e578a5aad0629b1223"
+    },
+    {
+      "file": "part-09.bin",
+      "bytes": 4194304,
+      "sha256": "52f11b9253fdbea16d5d7b3b8d529e297e8ee25cfcfe4c3be3105936fa694916"
+    },
+    {
+      "file": "part-10.bin",
+      "bytes": 1628983,
+      "sha256": "943020ab0db2810e353e9f3734a19007e61b8471180077924f38b3d15949f518"
+    }
+  ]
+}
