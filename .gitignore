@@ -1,12 +1,5 @@
 node_modules/
+dist/
 output/
 *.log
 .DS_Store
-.sites-runtime/
-/public/assets/call-of-booty-sprint.mp4
-/public/assets/sprint-parts/
-
-.env
-.env.*
-!.env.example
-.openai/
