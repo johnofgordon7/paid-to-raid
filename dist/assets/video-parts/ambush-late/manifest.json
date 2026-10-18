@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "logicalVideo": "./assets/call-of-booty-ambush-late.mp4",
+  "bytes": 39044597,
+  "sha256": "a38880bcf80f1382a627ce9f90f0bbe3da7968ba2d9497798b71ec61ef8fb94e",
+  "partSizeBytes": 4194304,
+  "parts": [
+    {
+      "file": "part-00.bin",
+      "bytes": 4194304,
+      "sha256": "911412f0878100e11ec3c32647525808ea6253c7489e91e7a0962db740b15928"
+    },
+    {
+      "file": "part-01.bin",
+      "bytes": 4194304,
+      "sha256": "2df90c91cf0d9a75ab515e8c538877097ac58b14364a362a6848b4e7315659ce"
+    },
+    {
+      "file": "part-02.bin",
+      "bytes": 4194304,
+      "sha256": "f4146edc4131419c16db67946368e5e6f30ada620923c6b0bd61b49027c145da"
+    },
+    {
+      "file": "part-03.bin",
+      "bytes": 4194304,
+      "sha256": "2d3184e328b2b7a827d77b16d65163c998abc49148efa6c68f297c244f837811"
+    },
+    {
+      "file": "part-04.bin",
+      "bytes": 4194304,
+      "sha256": "0a89ec794f51d9bcdd821a826ade7497c4622029f892814aa4e4f94e96f64274"
+    },
+    {
+      "file": "part-05.bin",
+      "bytes": 4194304,
+      "sha256": "d6f9c1e4c0961bf822ec11f07f9cbd1cdb60d6d3b9038f8984d6de5ea038c337"
+    },
+    {
+      "file": "part-06.bin",
+      "bytes": 4194304,
+      "sha256": "a2b072b613941ef263193e6e7fbfc0a19975184aa87f8353141755ed36f0fc04"
+    },
+    {
+      "file": "part-07.bin",
+      "bytes": 4194304,
+      "sha256": "5c4ecfc73e2b1c919a180560bcd831e1ff0ed86fd56ec3e52069f073e560c684"
+    },
+    {
+      "file": "part-08.bin",
+      "bytes": 4194304,
+      "sha256": "d35db96e404a49fbb387b9faa52df6fa192e5f92b62d1d82956940f2efcfbcdf"
+    },
+    {
+      "file": "part-09.bin",
+      "bytes": 1295861,
+      "sha256": "53f3013813089bcbeb1de406e347a59631e526546fcd432ac8d61a7aac50ebf0"
+    }
+  ]
+}
