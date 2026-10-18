@@ -4,61 +4,112 @@ export const MIN_STAKE = 10;
 export const MAX_STAKE = 10000;
 export const PRESETS = [100, 500, 1000, 2500];
 
-// Total stake returns, not net profit. This prototype catalogue is not a balanced
-// production outcome pool; the future 97% RTP target is not implemented here.
+// Total stake returns, not net profit. Tiers 4–9 are a proposed demo progression.
+// Production probabilities and the 97% RTP target are not implemented here.
 export const PAYOUTS = Object.freeze([0, 0.5, 1, 2, 5, 10, 25, 50, 100, 250, 1000]);
 
-function defineOutcome({ id, label, duration, kills, survival, visualType, visualTheme }) {
-  const finalKills = kills.length;
+function defineSequence(sequence) {
   return Object.freeze({
-    id, label, duration, kills: Object.freeze([...kills]), survival, finalKills,
-    multiplier: survival ? PAYOUTS[finalKills] : 0,
-    visualType, visualTheme, probability: 1 / 5,
+    ...sequence,
+    kills: Object.freeze(sequence.kills),
+    cues: Object.freeze(sequence.cues.map((cue) => Object.freeze(cue))),
   });
 }
 
-// The supplied video remains the original two-kill, 1× extraction. Its two
-// collapse times are unchanged. The other four outcomes use authored simulations.
-export const DEMO_SEQUENCE = defineOutcome({
+// The original approved animation and its observed kill timing are preserved.
+export const DEMO_SEQUENCE = defineSequence({
   id: 'SPRINT-002',
-  label: 'Depot extraction',
+  name: 'Clean extraction',
+  video: './assets/call-of-booty-sprint.mp4',
+  resultArt: './assets/call-of-booty-extraction.webp',
   duration: ROUND_LENGTH,
+  clipDuration: ROUND_LENGTH,
   kills: [9.75, 19.5],
   survival: true,
-  visualType: 'video',
-  visualTheme: 'sprint',
+  multiplier: 1,
+  cues: [
+    [0, 'Sprint through the depot'],
+    [7.2, 'Hostile ahead'],
+    [9.75, 'Keep moving'],
+    [18.2, 'Contact on the right'],
+    [19.5, 'Sprint to the extraction zone'],
+    [29.2, 'Secure the extraction'],
+  ],
 });
 
-// Select one immutable fixture when a round is accepted. Equal 20% sampling is a
-// prototype demonstration distribution, not a 97% RTP or production probability.
-export const DEMO_OUTCOMES = Object.freeze([
+// Equal, independent demo chances. These are not production odds or 97% RTP maths.
+// New footage timing is reviewed before release; duration is the round endpoint,
+// whereas clipDuration includes any generated tail after a fatal moment.
+export const SEQUENCES = Object.freeze([
   DEMO_SEQUENCE,
-  defineOutcome({
-    id: 'AMBUSH-001', label: 'Depot ambush', duration: 12.5,
-    kills: [4.6], survival: false, visualType: 'simulation', visualTheme: 'ambush',
+  defineSequence({
+    id: 'AMBUSH-001',
+    name: 'Service-lane ambush',
+    video: './assets/call-of-booty-ambush-early.mp4',
+    resultArt: './assets/call-of-booty-ambush-early.webp',
+    duration: 9.9,
+    clipDuration: 12,
+    kills: [5],
+    survival: false,
+    multiplier: 0,
+    cues: [[0, 'Move through the service lane'], [4, 'Contact ahead'], [5, 'Keep moving'], [8.7, 'Incoming fire']],
   }),
-  defineOutcome({
-    id: 'CROSSFIRE-003', label: 'Crossfire', duration: 22,
-    kills: [5.4, 11.5, 17.4], survival: false, visualType: 'simulation', visualTheme: 'crossfire',
+  defineSequence({
+    id: 'AMBUSH-003',
+    name: 'Loading-bay ambush',
+    video: './assets/call-of-booty-ambush-late.mp4',
+    resultArt: './assets/call-of-booty-ambush-late.webp',
+    duration: 21.8,
+    clipDuration: 30,
+    kills: [6, 11.5, 17.8],
+    survival: false,
+    multiplier: 0,
+    cues: [[0, 'Push through the loading yard'], [4, 'Hostile ahead'], [6, 'Stay on the move'], [17.8, 'Reach the extraction bay'], [20.7, 'Incoming fire']],
   }),
-  defineOutcome({
-    id: 'EXTRACTION-004', label: 'Four-kill extraction', duration: ROUND_LENGTH,
-    kills: [5, 11, 18, 25], survival: true, visualType: 'simulation', visualTheme: 'extraction',
+  defineSequence({
+    id: 'EXTRACT-005',
+    name: 'Four-kill extraction',
+    video: './assets/call-of-booty-extraction-five.mp4',
+    resultArt: './assets/call-of-booty-extraction-five.webp',
+    duration: ROUND_LENGTH,
+    clipDuration: ROUND_LENGTH,
+    kills: [6.5, 12.3, 18.3, 24.1],
+    survival: true,
+    multiplier: 5,
+    cues: [[0, 'Clear a route through the depot'], [6.5, 'Keep moving'], [18.3, 'Push through the loading bay'], [24.1, 'Sprint to the extraction zone'], [26.5, 'Secure the extraction']],
   }),
-  defineOutcome({
-    id: 'CASHFIRE-010', label: 'Cashfire maximum', duration: ROUND_LENGTH,
-    kills: [2.1, 4.6, 7.3, 10.1, 12.8, 15.4, 18.1, 20.9, 23.6, 26.7],
-    survival: true, visualType: 'simulation', visualTheme: 'cashfire',
+  defineSequence({
+    id: 'EXTRACT-1000',
+    name: 'Maximum extraction',
+    video: './assets/call-of-booty-extraction-max.mp4',
+    resultArt: './assets/call-of-booty-extraction-max.webp',
+    duration: ROUND_LENGTH,
+    clipDuration: ROUND_LENGTH,
+    kills: [3.95, 5.15, 8.45, 9.55, 14, 16.05, 18.7, 19.45, 23.45, 24.65],
+    survival: true,
+    multiplier: 1000,
+    cues: [[0, 'Push through the outer yard'], [5.15, 'Keep moving'], [14, 'Clear the next checkpoint'], [16.05, 'Push through the loading dock'], [24.65, 'Sprint to the extraction zone'], [27.5, 'Secure the extraction']],
   }),
 ]);
 
-export function chooseOutcome(random = Math.random) {
-  if (typeof random !== 'function') throw new TypeError('Outcome random source must be a function.');
-  const value = random();
-  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value >= 1) {
-    throw new RangeError('Outcome random source must return a finite number from 0 (inclusive) to 1 (exclusive).');
+const randomUint32 = () => {
+  const buffer = new Uint32Array(1);
+  globalThis.crypto.getRandomValues(buffer);
+  return buffer[0];
+};
+
+export function pickSequence(draw = randomUint32) {
+  // Rejection sampling avoids modulo bias. No shuffle bag or forced first win:
+  // each valid Play makes a fresh independent draw, including possible repeats.
+  const limit = Math.floor(0x100000000 / SEQUENCES.length) * SEQUENCES.length;
+  for (let attempt = 0; attempt < 32; attempt++) {
+    const value = draw();
+    if (!Number.isInteger(value) || value < 0 || value > 0xffffffff) {
+      throw new Error('Random selection requires an unsigned 32-bit integer.');
+    }
+    if (value < limit) return SEQUENCES[value % SEQUENCES.length];
   }
-  return DEMO_OUTCOMES[Math.floor(value * DEMO_OUTCOMES.length)];
+  throw new Error('Random selection could not complete.');
 }
 
 export function parseStake(raw) {
@@ -75,50 +126,51 @@ export function multiplierFor(kills) {
   return Number.isInteger(kills) && kills >= 0 && kills < PAYOUTS.length ? PAYOUTS[kills] : null;
 }
 
-export function snapshotAt(time, outcome = DEMO_SEQUENCE) {
-  const t = Math.min(outcome.duration, Math.max(0, Number.isFinite(time) ? time : 0));
-  const kills = outcome.kills.filter((at) => t >= at).length;
-  const done = t >= outcome.duration;
-  const didDie = done && !outcome.survival;
-  const survived = done && outcome.survival;
-  const potentialMultiplier = multiplierFor(kills);
-  let objective = 'Sprint through the depot';
-  if (outcome === DEMO_SEQUENCE) {
-    if (t >= 7.2 && t < outcome.kills[0]) objective = 'Hostile ahead';
-    else if (t >= outcome.kills[0] && t < 18.2) objective = 'Keep moving';
-    else if (t >= 18.2 && t < outcome.kills[1]) objective = 'Contact on the right';
-    else if (t >= outcome.kills[1] && t < 29.2) objective = 'Sprint to the extraction zone';
-    else if (t >= 29.2 && t < 30) objective = 'Secure the extraction';
-  } else {
-    const nextKillAt = outcome.kills[kills];
-    if (!outcome.survival && t >= outcome.duration - 3) objective = 'Incoming fire — find cover';
-    else if (t >= ROUND_LENGTH - 1.2) objective = 'Secure the extraction';
-    else if (kills === outcome.finalKills) objective = 'Sprint to the extraction zone';
-    else if (nextKillAt - t <= 1.8) objective = 'Hostile ahead';
-    else if (kills > 0) objective = 'Advance through the depot';
-  }
-  if (didDie) objective = 'Operator down — round ended';
-  else if (survived) objective = 'Extraction complete';
+export function snapshotAt(time, sequence = DEMO_SEQUENCE) {
+  const t = Math.min(sequence.duration, Math.max(0, Number.isFinite(time) ? time : 0));
+  const kills = sequence.kills.filter((at) => t >= at).length;
+  const complete = t >= sequence.duration;
+  const survived = complete && sequence.survival && t >= ROUND_LENGTH;
+  const eliminated = complete && !sequence.survival;
+  let objective = sequence.cues[0][1];
+  for (const [at, label] of sequence.cues) if (t >= at) objective = label;
+  if (survived) objective = 'Extraction complete';
+  if (eliminated) objective = 'Operator eliminated';
   return {
     time: t,
     remaining: Math.max(0, Math.ceil(ROUND_LENGTH - t)),
     kills,
-    multiplier: didDie ? 0 : potentialMultiplier,
-    potentialMultiplier,
+    multiplier: eliminated ? 0 : multiplierFor(kills),
+    potentialMultiplier: multiplierFor(kills),
+    complete,
     survived,
-    didDie,
-    alive: !didDie,
-    done,
-    outcomeId: outcome.id,
+    eliminated,
     objective,
   };
 }
 
 export function settleOutcome(stake, kills, survived) {
+  if (!Number.isSafeInteger(stake) || stake < MIN_STAKE || stake > MAX_STAKE) {
+    throw new Error('A valid integer-cent demo stake is required.');
+  }
   if (!survived) return 0;
   const multiplier = multiplierFor(kills);
   if (multiplier === null) throw new Error('Payout not configured for this kill count.');
   return Math.round(stake * multiplier);
+}
+
+export function settlementAt(stake, sequence, elapsed) {
+  const snapshot = snapshotAt(elapsed, sequence);
+  if (!snapshot.complete) return null;
+  const payout = settleOutcome(stake, snapshot.kills, snapshot.survived);
+  return {
+    payout,
+    net: payout - stake,
+    kills: snapshot.kills,
+    multiplier: snapshot.multiplier,
+    survived: snapshot.survived,
+    duration: snapshot.time,
+  };
 }
 
 export const formatMoney = (cents) => new Intl.NumberFormat('en-GB', {

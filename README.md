@@ -1,70 +1,39 @@
 # Cashfire
 
-Source code for the current Cashfire cinematic game prototype. This archive includes the React application, styling, game logic, tests, build configuration, and all video and image assets used by the game.
+A play-money first-person video survival prototype. Five supplied native combat sequences retain their original video frames, sound, kill timings and results. Cashfire branding, the Incentive Studios shell and the complete right-hand payout table show current progress, next-kill return and the 1,000× maximum. Betting controls are hidden during loading, active and paused rounds.
 
-## Run locally
+## Run and build
 
-Use Node.js 20 or later and npm. The project was built and tested with Node.js 20.20.2 and npm 10.8.2.
+Use Node.js 20 or later. Run `npm ci`, then `npm test`. Use `npm run dev` for development, or `npm run build` to generate `dist/`. Serve the complete build over HTTP. HTTPS or localhost is required for browser SHA-256 verification. No backend, account, database or API key is required. Fonts use the existing external providers with local fallbacks.
 
-From this folder, run:
+## Browser-upload media transport
 
-```sh
-npm ci
-npm run dev
-```
+Four large MP4s are stored as byte-exact parts under `public/assets/video-parts/`. Every part is at most 4 MiB, below a 25 MiB individual-file upload limit. The early ambush remains a direct native MP4. All parts, manifests and the direct clip are required assets; building does not download missing footage.
 
-Open the local address printed in the terminal, normally port 5173. Choose a demo stake and press Play.
+Only the independently selected clip loads. For a split clip, the loader verifies each part and the complete SHA-256, then creates a `video/mp4` Blob URL for native playback. It does not re-encode, trim, reorder scenes or change audio. The full selected clip must finish downloading before its clock starts. Native seeking uses the completed local Blob; chunk requests do not require server byte-range support. The direct early clip can use the browser's normal progressive/range loading.
 
-## Build and test
+During loading, the accepted stake and outcome stay fixed and the timer is held. If playback needs a fresh gesture after loading, tap Resume to start the same selected round. Opening a menu or leaving the tab also holds playback. Missing or corrupt footage ends the unsuccessful load and refunds the unsettled stake once. Retry begins from a safe idle state. Blob URLs and in-flight loads are released when leaving or replacing the round.
 
-```sh
-# Run the game-logic tests
-npm test
+To regenerate the parts from the five original MP4s, run `python scripts/prepare-browser-media.py --originals <original-video-directory>`. This optional preparation script verifies the native hashes and writes parts/catalogs inside this project. Originals are not re-encoded. The checked-in parts are sufficient for ordinary builds.
 
-# Create the static production build
-npm run build
+## Demo mechanics
 
-# Serve the production build locally
-npm run preview
-```
+Each accepted Play selects one of five outcomes independently with 20% probability using WebCrypto rejection sampling. Repeated outcomes are possible. The source outcome model is unchanged:
 
-The production files are generated in `dist/`. Deploy the entire contents of that directory, including `assets/`, to a static web host; no backend, API key, or database is required.
+| Sequence | Kills | Round end | Total stake return |
+|---|---:|---:|---:|
+| SPRINT-002 | 2 | 30s | 1× |
+| AMBUSH-001 | 1 | 9.9s | 0× |
+| AMBUSH-003 | 3 | 21.8s | 0× |
+| EXTRACT-005 | 4 | 30s | 5× |
+| EXTRACT-1000 | 10 | 30s | 1,000× |
 
-Use an HTTP server to view the build rather than opening `index.html` directly from the filesystem. Keep the development server private; use the static production build for deployment.
+Native video time drives kills, survival and settlement. Fatal endpoints differ from full file lengths. An eliminated player receives zero regardless of prior kills. Multipliers are total returns after survival, not additional profit. There are no player aiming or shooting controls.
 
-Windows browser automation remains blocked by child-process/IPC permissions for this update. Desktop/mobile screenshots, interaction playback and audible review require a final check in a functioning browser environment; see `docs/recreation-review.md`.
+All money is demo money. This equal showcase mix has an expected total return of 201.2× stake. It does not implement the future 97% RTP concept or a 10,000-animation catalogue. Production probabilities and certification are not implemented.
 
-## Project contents
+## Verification
 
-- `src/main.jsx`: application, video playback, wallet, stake controls, HUD, dialogs, and settlement flow.
-- `src/game.js`: demo timeline, payout ladder, stake validation, and money calculations.
-- `src/style.css` and `src/base.css`: visual design and responsive layout.
-- `src/ui.jsx`: reusable interface components.
-- `src/audio.js`: interface sound effects.
-- `public/assets/`: opening and extraction images, plus generated combat video parts.
-- `media-parts/`: the original sprinting combat video stored as 11 exact binary parts and its manifest.
-- `scripts/prepare-media.mjs`: verifies the original video bytes and prepares the browser-loadable parts before dev/build.
-- `public/favicon.svg`: game favicon.
-- `tests/game.test.js`: timeline, payout, validation, and accounting tests.
-- `package-lock.json`: locked dependency versions for reproducible installation.
-- `vite.config.js`, `tailwind.config.js`, and `postcss.config.js`: build configuration.
+`npm test` covers the outcome model, fixed native-media hashes, part reconstruction, safe references, loading integrity, cancellation and retry. Browser playback, audible sound and responsive presentation still require actual browser review; automated byte checks do not establish those passes.
 
-## Current demo behavior
-
-Play accepts one demo stake and randomly selects one of five equally likely canned outcomes, fixed until that round settles: original30-second two-kill1× video; two different early eliminations at12.5s and22s returning0×; four-kill30-second survival at5×; ten-kill30-second survival at1,000×. Returns are total stake returns. Elimination pays zero regardless of prior kills.
-
-The four new outcomes are procedural animated cutout combat simulations, not newly filmed clips. Their enemy entry, fire, hit/collapse, death and extraction timing follow the selected fixture. The original video/audio bytes are preserved. See `docs/cashfire-update.md` for implementation and review limits.
-
-All balances are play money. Equal five-way demo selection is a showcase distribution, not97%RTP. The future10,000-outcome animation catalogue, lookup weighting, mathematical validation and certification are not implemented.
-
-## Assets and dependencies
-
-The original 45,642,600-byte combat video exceeds the Site host's 25 MiB (26,214,400-byte) limit per asset. It is stored as 11 exact binary parts under `media-parts/`. Before dev/build, `scripts/prepare-media.mjs` verifies that their combined SHA-256 matches the original MP4 and copies the parts and manifest into the generated `public/assets/sprint-parts/` directory. The browser fetches those parts and combines them into a `video/mp4` Blob URL. This preserves every original video and audio byte without re-encoding. The full video must download before playback can start.
-
-If the full original MP4 already exists locally, preparation preserves it under ignored `.sites-runtime/original-sprint.mp4`, outside deployable assets. The legacy `scripts/restore-video.mjs` remains for optional original-file inspection; it is not used by dev/build. Do not run it after preparation when deploying, because it places the oversized MP4 back under `public/assets/`.
-
-The video parts and images are included in this source package. The Satoshi and Barlow Condensed fonts are loaded from Fontshare and Google Fonts through `index.html`; self-host the fonts or use the existing fallbacks if a fully offline presentation is needed.
-
-Dependencies are installed with `npm ci`, so `node_modules/` is intentionally excluded. Build output, repository history, development logs, and test screenshots are also excluded.
-
-The runtime title, package metadata, game logo and favicon use Cashfire branding. The right-side paytable shows every configured tier through 1,000×, the current tier and the next kill's conditional total return. This is a presentation update; the authored round and audio are preserved.
+For deterministic local review, open `?qa=1` on localhost and call `window.__cashfireTest.forceNextOutcome(id)` before Play. Accepted rounds cannot be changed. Ordinary Play remains independently randomized.

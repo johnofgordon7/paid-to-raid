@@ -3,7 +3,7 @@ import { Crosshair, Flame } from 'lucide-react';
 import { PAYOUTS, formatMoney, formatMultiplier } from './game.js';
 
 /** Presentation only: all amounts come from the existing total-return ladder. */
-export function CashfireMeter({ kills, multiplier, stake, phase, survived }) {
+export function CashfireMeter({ kills, multiplier, stake, phase, survived, reusesFootage = false }) {
   const lastTier = PAYOUTS.length - 1;
   const currentKills = Math.min(lastTier, Math.max(0, Math.trunc(kills || 0)));
   const currentMultiplier = Number.isFinite(multiplier) ? multiplier : PAYOUTS[currentKills];
@@ -44,7 +44,7 @@ export function CashfireMeter({ kills, multiplier, stake, phase, survived }) {
     <div className="cashfire-progress" role="meter" aria-label="Current kill progress" aria-valuenow={currentKills} aria-valuemin={0} aria-valuemax={lastTier} aria-valuetext={`${currentKills} of ${lastTier} kills, ${formatMultiplier(currentMultiplier)} total stake return`}>
       {PAYOUTS.slice(1).map((_, index) => <i className={index < currentKills ? 'is-filled' : ''} key={index} />)}
     </div>
-    <p className="cashfire-meter-note">5-outcome demo.<span>Survive to collect.</span></p>
+    <p className="cashfire-meter-note">{reusesFootage ? 'Replayed encounters.' : '5-outcome demo.'}<span>Survive to collect.</span></p>
   </aside>;
 }
 
