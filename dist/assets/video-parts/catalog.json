@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "partSizeBytes": 4194304,
+  "videos": {
+    "./assets/call-of-booty-sprint.mp4": {
+      "type": "chunks",
+      "manifest": "./assets/video-parts/sprint/manifest.json",
+      "bytes": 45642600,
+      "sha256": "cbf5331b3cc4dc1ad43957e9048685b62979e9b5300244738d67684d79da9924"
+    },
+    "./assets/call-of-booty-ambush-early.mp4": {
+      "type": "direct",
+      "url": "./assets/call-of-booty-ambush-early.mp4",
+      "bytes": 17444048,
+      "sha256": "d9e0297ec40531723c73d3b94fa0804d4dbe0283070882f02edc07a6ba849da5"
+    },
+    "./assets/call-of-booty-ambush-late.mp4": {
+      "type": "chunks",
+      "manifest": "./assets/video-parts/ambush-late/manifest.json",
+      "bytes": 39044597,
+      "sha256": "a38880bcf80f1382a627ce9f90f0bbe3da7968ba2d9497798b71ec61ef8fb94e"
+    },
+    "./assets/call-of-booty-extraction-five.mp4": {
+      "type": "chunks",
+      "manifest": "./assets/video-parts/extraction-five/manifest.json",
+      "bytes": 42997236,
+      "sha256": "e3739bbd91ff09a42ae6549b82f17a2ced9da39bc82ed991ae854b9612d12f6f"
+    },
+    "./assets/call-of-booty-extraction-max.mp4": {
+      "type": "chunks",
+      "manifest": "./assets/video-parts/extraction-max/manifest.json",
+      "bytes": 43572023,
+      "sha256": "f8557534dd9e22b6e1654527e0ea9d6699f6c44db8a67a6f5d635db7f3a7403e"
+    }
+  }
+}
