@@ -19,18 +19,6 @@
       ],
       "provenance": "Original Cashfire wordmark generated for the requested rebrand: ivory steel CASH, fire-orange FIRE and a compact muzzle-flash motif on transparent background.",
       "notes": "No character or additional tile asset. Existing gameplay stills, video and sound are unchanged."
-    },
-    {
-      "file": "cashfire-enemy.png",
-      "status": "generated tactical enemy cutout",
-      "width": 1024,
-      "height": 1536,
-      "format": "PNG",
-      "colorMode": "RGBA",
-      "bytes": 2004582,
-      "runtimeUse": "four procedural combat simulations",
-      "source": "Built-in image generation",
-      "provenance": "Anonymous full-body olive tactical combatant with helmet, face covering and unbranded rifle on transparent background. No logo/flag/insignia."
     }
   ]
 }
