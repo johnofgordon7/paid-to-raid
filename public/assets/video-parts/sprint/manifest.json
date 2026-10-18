@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "logicalVideo": "./assets/call-of-booty-sprint.mp4",
+  "bytes": 45642600,
+  "sha256": "cbf5331b3cc4dc1ad43957e9048685b62979e9b5300244738d67684d79da9924",
+  "partSizeBytes": 4194304,
+  "parts": [
+    {
+      "file": "part-00.bin",
+      "bytes": 4194304,
+      "sha256": "f917e573fc674760ddd085e6e04c6d2585dee6444d3c6c2ccece2d1e7f1f8e3d"
+    },
+    {
+      "file": "part-01.bin",
+      "bytes": 4194304,
+      "sha256": "93553a2353bf4d45d6fd1db205128b51a1080f9bfd789f38bbcddfb12e50d40e"
+    },
+    {
+      "file": "part-02.bin",
+      "bytes": 4194304,
+      "sha256": "3630b760f5b2fad754245876510d4a8338c7c1202bd464f78bfbf86da849e338"
+    },
+    {
+      "file": "part-03.bin",
+      "bytes": 4194304,
+      "sha256": "ec91b27040122cbaa0e8b7c40b2855b03838c5353803e84257cb38d105e70521"
+    },
+    {
+      "file": "part-04.bin",
+      "bytes": 4194304,
+      "sha256": "b677081b38b4a0e133c0c3ee9ab9925fcf5686211395431bec02f3e253ea53f7"
+    },
+    {
+      "file": "part-05.bin",
+      "bytes": 4194304,
+      "sha256": "2fe840d229380ea5a76c6769406c149e294987735fca5728fa3aff66f8425e97"
+    },
+    {
+      "file": "part-06.bin",
+      "bytes": 4194304,
+      "sha256": "62d03f1d8ef1165dcad2f82cf26b293666edca77454ace7cd56b388cfbc62081"
+    },
+    {
+      "file": "part-07.bin",
+      "bytes": 4194304,
+      "sha256": "cfcae9138a82a4d69309bee3559316ba71a4b2098c01ccb2f228bb4e7211d513"
+    },
+    {
+      "file": "part-08.bin",
+      "bytes": 4194304,
+      "sha256": "86035db9ee9686a3e61bd1de15c352f35d467e8468a619fb244fe2fc8ff47e1c"
+    },
+    {
+      "file": "part-09.bin",
+      "bytes": 4194304,
+      "sha256": "d53f8ebd8d85d14c7490d9e968a4c6017febcf9f7be77b75735ebc5a342f1c1b"
+    },
+    {
+      "file": "part-10.bin",
+      "bytes": 3699560,
+      "sha256": "41f52098f5c40e1002ac311c192585082d20fcfd877f396507e5d2fe6a6505e5"
+    }
+  ]
+}
